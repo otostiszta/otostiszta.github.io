@@ -58,7 +58,7 @@
 
     <!-- Footer -->
     <div class="absolute bottom-4 text-gray-600 text-xs flex gap-2">
-      <span>© {{ new Date().getFullYear() }} Otostiszta. Minden jog fenntartva.</span>
+      <span>© {{ new Date().getFullYear() }} Loud and Clear. Minden jog fenntartva.</span>
       <span>|</span>
       <button @click="$emit('open-privacy')" class="hover:text-gray-400 underline">Adatvédelmi Tájékoztató</button>
       <span>|</span>

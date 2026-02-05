@@ -2,7 +2,7 @@
 const loadGoogleAnalytics = () => {
   if (window.dataLayer) return // Already loaded
 
-  const gaId = 'G-XXXXXXXXXX' // Placeholder
+  const gaId = 'G-D35D1SHW91'
   
   // Load Script
   const script = document.createElement('script')
@@ -23,7 +23,7 @@ const loadGoogleAnalytics = () => {
 const loadHotjar = () => {
   if (window.hj) return // Already loaded
 
-  const hjId = 'XXXXXXX' // Placeholder
+  const hjId = 6639814
   const hjsv = 6
   
   ;(function(h,o,t,j,a,r){
@@ -42,7 +42,7 @@ const loadHotjar = () => {
 const loadFacebookPixel = () => {
   if (window.fbq) return // Already loaded
 
-  const pixelId = 'XXXXXXXXXXXXXXXXX' // Placeholder
+  const pixelId = '940081035351232'
   
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
