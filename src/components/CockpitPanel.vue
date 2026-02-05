@@ -29,7 +29,7 @@
       </div>
 
       <!-- Radio Stack (Right) -->
-      <div class="order-1 md:order-2 w-full max-w-md">
+      <div class="order-1 md:order-2 w-full max-w-[600px]">
         <div class="relative">
           <!-- Connection Wire (Visual decoration) -->
           <svg class="absolute top-1/2 -left-16 w-16 h-24 hidden md:block pointer-events-none" style="z-index: -1;">

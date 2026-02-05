@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full max-w-sm md:w-[600px] h-auto md:h-[170px] mx-auto bg-[#1a1b1e] rounded shadow-2xl border-t border-gray-700 font-sans select-none overflow-hidden">
+  <div class="relative w-full max-w-sm md:max-w-[600px] md:w-[600px] h-auto md:h-[170px] mx-auto bg-[#1a1b1e] rounded shadow-2xl border-t border-gray-700 font-sans select-none overflow-hidden">
     
     <!-- Main Faceplate Grid -->
     <div class="grid grid-cols-1 md:grid-cols-[90px_1fr_90px] h-full">
