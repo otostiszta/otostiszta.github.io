@@ -10,7 +10,7 @@
         <span class="block text-orange-500 text-xl md:text-2xl mt-1">- A FÖLDÖN! -</span>
       </h1>
       <p class="text-gray-400 text-sm md:text-base max-w-lg mx-auto">
-        Mert a járó motor túl drága csak rádiózni. Iratkozz fel, és küldünk gyakorló anyagokat!
+        Mert a járó motor túl drága csak rádiózni. Iratkozz fel, és értesítünk, amikor kész!
       </p>
     </div>
 

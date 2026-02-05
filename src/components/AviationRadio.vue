@@ -1,91 +1,143 @@
 <template>
-  <div class="relative w-full max-w-md mx-auto bg-gray-900 rounded-lg shadow-xl border-4 border-gray-700 p-4 font-mono select-none">
-    <!-- Mounting screws -->
-    <div class="absolute top-2 left-2 w-3 h-3 rounded-full bg-gray-600 border border-gray-800"></div>
-    <div class="absolute top-2 right-2 w-3 h-3 rounded-full bg-gray-600 border border-gray-800"></div>
-    <div class="absolute bottom-2 left-2 w-3 h-3 rounded-full bg-gray-600 border border-gray-800"></div>
-    <div class="absolute bottom-2 right-2 w-3 h-3 rounded-full bg-gray-600 border border-gray-800"></div>
+  <div class="relative w-[600px] h-[170px] mx-auto bg-[#1a1b1e] rounded shadow-2xl border-t border-gray-700 font-sans select-none overflow-hidden">
+    
+    <!-- Main Faceplate Grid -->
+    <div class="grid grid-cols-[90px_1fr_90px] h-full">
+      
+      <!-- LEFT SECTION: Volume/Power -->
+      <div class="relative flex flex-col items-center pt-2 border-r border-gray-800/50">
+        <!-- COM Label -->
+        <div class="absolute top-1 left-2 text-[10px] font-bold text-gray-400">COM</div>
+        
+        <!-- LED Indicator -->
+        <div class="absolute top-2 right-4 w-1.5 h-1.5 rounded-full bg-gray-800 shadow-inner"></div>
 
-    <!-- Radio Brand/Model -->
-    <div class="text-center text-gray-400 text-xs mb-2 tracking-widest">
-      <span class="font-bold">GARMIN</span> GTR 225
-    </div>
-
-    <!-- Main Display Area -->
-    <div class="bg-black border-2 border-gray-600 rounded p-4 mb-4 relative overflow-hidden">
-      <!-- Glass reflection effect -->
-      <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
-
-      <div class="flex justify-between items-center gap-4">
-        <!-- Active Frequency (Static) -->
-        <div class="flex flex-col items-end">
-          <span class="text-xs text-orange-500 uppercase">Active</span>
-          <div class="text-3xl font-bold text-orange-500 font-digital tracking-wider">
-            118.100
+        <!-- Volume Knob Group -->
+        <div class="mt-5 flex flex-col items-center">
+          <div class="relative w-14 h-14 flex items-center justify-center">
+             <SingleKnob v-model="volume" :size="40" />
+          </div>
+          <div class="mt-1 flex flex-col items-center leading-none text-center">
+            <span class="text-[8px] text-gray-400 font-bold block">PWR</span>
+            <span class="text-[8px] text-gray-400 font-bold block">VOL</span>
+            <span class="text-[7px] text-gray-500 mt-0.5 block">PUSH SQ</span>
           </div>
         </div>
 
-        <!-- Swap Icon -->
-        <div class="text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-          </svg>
-        </div>
+        <!-- MON Button -->
+        <button class="absolute bottom-3 w-10 h-6 bg-[#252629] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-white text-[10px] font-semibold active:translate-y-[1px] active:border-b-0 active:shadow-inner">
+          MON
+        </button>
+      </div>
 
-        <!-- Standby Frequency / Email Input -->
-        <div class="flex flex-col items-start flex-grow">
-          <span class="text-xs text-orange-400 uppercase">Standby / Email</span>
-          <div class="relative w-full">
-            <input
-              type="email"
-              :value="modelValue"
-              @input="$emit('update:modelValue', $event.target.value)"
-              placeholder="EMAIL ADDR"
-              class="w-full bg-transparent text-2xl font-bold text-orange-400 font-digital tracking-wider border-none focus:ring-0 p-0 placeholder-orange-900/50 caret-orange-500 uppercase"
-              :class="{ 'animate-pulse': isTransmitting }"
-            />
-            <!-- TX Indicator -->
-            <div 
-              v-if="isTransmitting"
-              class="absolute -top-5 right-0 bg-red-600 text-white text-[10px] px-1 rounded animate-pulse"
-            >
-              TX
+      <!-- CENTER SECTION: Display & Buttons -->
+      <div class="flex flex-col px-1 pt-2">
+        <!-- Display Bezel -->
+        <div class="bg-[#0a0a0a] rounded-sm border-b border-gray-800 shadow-[inset_0_2px_10px_rgba(0,0,0,1)] relative h-[95px] overflow-hidden mb-2 mx-1">
+          <!-- Glass Reflection -->
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none z-20"></div>
+          
+          <!-- LCD Content -->
+          <div class="h-full relative z-10 p-3 flex flex-col justify-center">
+            
+            <!-- Frequencies Row -->
+            <div class="flex justify-between items-baseline mb-1 relative">
+              
+              <!-- ACTIVE FREQ GROUP -->
+              <div class="relative w-[180px]">
+                <span class="absolute -top-3 left-0 text-[9px] text-white font-bold">ACT</span>
+                <div class="flex items-baseline">
+                   <span class="text-4xl font-digital text-white tracking-widest leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">121.975</span>
+                </div>
+                <!-- Middle COM Label -->
+                <span class="absolute top-1 -right-4 text-[9px] text-white font-bold">COM</span>
+              </div>
+              
+              <!-- STANDBY FREQ / EMAIL INPUT GROUP -->
+              <div class="relative w-[180px] flex justify-end">
+                <span class="absolute -top-3 left-0 text-[9px] text-white font-bold">STB</span>
+                
+                <!-- Input Field replacing Standby Freq -->
+                <div class="relative w-full text-right">
+                  <input
+                    type="text"
+                    :value="modelValue"
+                    @input="$emit('update:modelValue', $event.target.value)"
+                    placeholder="EMAIL"
+                    class="bg-transparent border-none text-3xl font-digital text-white tracking-widest leading-none p-0 w-full text-right focus:ring-0 placeholder-gray-700 caret-white uppercase h-9"
+                    spellcheck="false"
+                  />
+                  <!-- Transmit Indicator -->
+                  <div v-if="isTransmitting" class="absolute -top-4 right-0 text-[9px] bg-white text-black font-bold px-1 animate-pulse z-30">TX</div>
+                </div>
+              </div>
+
             </div>
+
+            <!-- Labels Row (Bottom of Display) -->
+            <div class="flex justify-between mt-2 px-1">
+              <span class="text-[10px] font-digital text-cyan-200/80 tracking-wider">EGLL TWR</span>
+              <span class="text-[10px] font-digital text-cyan-200/80 tracking-wider">EGLL ATIS</span>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Bottom Buttons Row -->
+        <div class="flex justify-between items-center px-4 mt-auto mb-3">
+          <div class="flex gap-2">
+            <button class="radio-btn">COM</button>
+            <button class="radio-btn">MEM</button>
+            <button class="radio-btn">ICS</button>
+          </div>
+          
+          <!-- Photocell Sensor -->
+          <div class="w-1.5 h-1.5 rounded-full bg-black border border-gray-700 shadow-inner mx-2"></div>
+          
+          <div class="flex gap-2">
+            <button class="radio-btn">FUNC</button>
+            <button class="radio-btn">CLR</button>
+            <button class="radio-btn">ENT</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Controls Row -->
-    <div class="flex justify-between items-center px-2">
-      <!-- Volume Knob -->
-      <div class="flex flex-col items-center gap-1">
-        <div class="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-600 shadow-lg flex items-center justify-center relative transform rotate-45">
-          <div class="w-1 h-4 bg-white rounded-full absolute top-1"></div>
+      <!-- RIGHT SECTION: Tuning & Model -->
+      <div class="relative flex flex-col items-center pt-2 border-l border-gray-800/50">
+        <!-- Swap Button -->
+        <button class="mb-auto mt-6 text-white hover:text-gray-300 active:scale-95 transition-transform group">
+          <div class="w-9 h-6 bg-[#252629] rounded flex items-center justify-center border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] group-active:translate-y-[1px] group-active:border-b-0 group-active:shadow-inner">
+             <svg width="16" height="12" viewBox="0 0 24 16" fill="none">
+               <path d="M4 8h16M4 8l6-6M4 8l6 6M20 8l-6-6M20 8l-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+          </div>
+        </button>
+
+        <!-- Tuning Knob Group -->
+        <div class="absolute bottom-3 flex flex-col items-center">
+          <div class="relative w-14 h-14 flex items-center justify-center">
+             <DualKnob 
+               v-model:outerValue="tuneOuter"
+               v-model:innerValue="tuneInner"
+               :size="56"
+             />
+          </div>
+          <div class="mt-1 flex flex-col items-end w-full px-1 leading-none text-right">
+            <span class="text-[8px] text-gray-400 font-bold block w-full text-center">TUNE</span>
+            <span class="text-[7px] text-gray-500 mt-0.5 block w-full text-center">PUSH CRSR</span>
+          </div>
         </div>
-        <span class="text-[10px] text-gray-400 uppercase">Vol/Sq</span>
       </div>
 
-      <!-- Function Buttons -->
-      <div class="flex gap-2">
-        <button class="w-10 h-6 bg-gray-800 border border-gray-600 rounded text-[10px] text-gray-300 shadow active:bg-gray-700 active:shadow-inner">COM</button>
-        <button class="w-10 h-6 bg-gray-800 border border-gray-600 rounded text-[10px] text-gray-300 shadow active:bg-gray-700 active:shadow-inner">NAV</button>
-        <button class="w-10 h-6 bg-gray-800 border border-gray-600 rounded text-[10px] text-gray-300 shadow active:bg-gray-700 active:shadow-inner">SYS</button>
-      </div>
-
-      <!-- Frequency Knob -->
-      <div class="flex flex-col items-center gap-1">
-        <div class="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-600 shadow-lg flex items-center justify-center relative">
-          <!-- Inner knob -->
-          <div class="w-8 h-8 rounded-full bg-gray-700 border border-gray-500 shadow-md"></div>
-        </div>
-        <span class="text-[10px] text-gray-400 uppercase">Push Dual</span>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import SingleKnob from './SingleKnob.vue'
+import DualKnob from './DualKnob.vue'
+
 defineProps({
   modelValue: {
     type: String,
@@ -98,6 +150,10 @@ defineProps({
 })
 
 defineEmits(['update:modelValue'])
+
+const volume = ref(0)
+const tuneOuter = ref(0)
+const tuneInner = ref(0)
 </script>
 
 <style scoped>
@@ -105,6 +161,10 @@ defineEmits(['update:modelValue'])
 
 .font-digital {
   font-family: 'Share Tech Mono', monospace;
-  text-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+}
+
+
+.radio-btn {
+  @apply w-11 h-6 bg-[#252629] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-gray-300 text-[10px] font-semibold flex items-center justify-center active:translate-y-[1px] active:border-b-0 active:shadow-inner hover:text-white transition-colors;
 }
 </style>
