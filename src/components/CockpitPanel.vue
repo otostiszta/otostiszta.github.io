@@ -57,8 +57,12 @@
     </div>
 
     <!-- Footer -->
-    <div class="absolute bottom-4 text-gray-600 text-xs">
-      © {{ new Date().getFullYear() }} Otostiszta. Minden jog fenntartva.
+    <div class="absolute bottom-4 text-gray-600 text-xs flex gap-2">
+      <span>© {{ new Date().getFullYear() }} Otostiszta. Minden jog fenntartva.</span>
+      <span>|</span>
+      <button @click="$emit('open-privacy')" class="hover:text-gray-400 underline">Adatvédelmi Tájékoztató</button>
+      <span>|</span>
+      <button @click="$emit('open-cookies')" class="hover:text-gray-400 underline">Cookie beállítások</button>
     </div>
   </div>
 </template>
@@ -69,6 +73,7 @@ import jsonp from 'jsonp'
 import AviationRadio from './AviationRadio.vue'
 import ControlStick from './ControlStick.vue'
 
+const emit = defineEmits(['open-privacy', 'open-cookies'])
 const email = ref('')
 const isTransmitting = ref(false)
 const statusMessage = ref('')

@@ -1,49 +1,79 @@
 <template>
-  <div class="relative w-64 h-64 mx-auto flex items-center justify-center select-none">
-    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-2xl">
-      <!-- Stick Base/Boot -->
-      <path d="M70,180 Q100,200 130,180 L140,190 Q100,220 60,190 Z" fill="#1f2937" />
-      
-      <!-- Stick Shaft -->
-      <rect x="85" y="100" width="30" height="90" fill="#374151" rx="5" />
-      
-      <!-- Stick Grip (Ergonomic shape) -->
-      <path d="M75,100 
-               Q65,100 65,80 
-               Q65,40 100,30 
-               Q135,40 135,80 
-               Q135,100 125,100 
-               Z" 
-            fill="#111827" stroke="#374151" stroke-width="2" />
-      
-      <!-- Grip Texture/Detail -->
-      <path d="M80,80 Q100,85 120,80" fill="none" stroke="#374151" stroke-width="1" opacity="0.5" />
-      <path d="M80,70 Q100,75 120,70" fill="none" stroke="#374151" stroke-width="1" opacity="0.5" />
-      <path d="M80,60 Q100,65 120,60" fill="none" stroke="#374151" stroke-width="1" opacity="0.5" />
+  <div class="relative w-80 h-80 mx-auto flex items-center justify-center select-none">
+    <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-2xl">
+      <defs>
+        <!-- GRIP GRADIENT: Matte dark rubber/plastic -->
+        <linearGradient id="gripGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#111" />
+          <stop offset="30%" stop-color="#2a2a2a" /> <!-- Highlight -->
+          <stop offset="60%" stop-color="#1a1a1a" />
+          <stop offset="100%" stop-color="#0a0a0a" />
+        </linearGradient>
 
-      <!-- PTT Button Housing -->
-      <path d="M65,60 Q55,60 55,50 Q55,40 65,40 Z" fill="#1f2937" />
+        <!-- SHAFT GRADIENT: Metallic -->
+        <linearGradient id="shaftGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#333" />
+          <stop offset="50%" stop-color="#666" />
+          <stop offset="100%" stop-color="#222" />
+        </linearGradient>
+        
+        <!-- BOOT SHADOW -->
+        <radialGradient id="bootGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1f2937" />
+          <stop offset="100%" stop-color="#111827" />
+        </radialGradient>
+      </defs>
+
+      <!-- 1. BASE / BOOT -->
+      <path d="M120,340 Q200,380 280,340 L290,360 Q200,400 110,360 Z" fill="url(#bootGradient)" opacity="0.9" />
+
+      <!-- 2. SHAFT -->
+      <rect x="180" y="200" width="40" height="150" fill="url(#shaftGradient)" rx="4" />
+
+      <!-- 3. GRIP BODY (Complex ergonomic shape) -->
+      <!-- Left contour -> Top head -> Right thumb rest -> Bottom neck -->
+      <path d="
+        M160,220 
+        C140,220 130,200 130,150 
+        C130,80 160,40 200,40 
+        C250,40 270,70 270,120 
+        C270,160 250,180 240,180 
+        C240,180 260,200 250,230
+        C240,260 220,220 220,220
+        L160,220 Z" 
+        fill="url(#gripGradient)" 
+        stroke="#000" stroke-width="2"
+      />
+      
+      <!-- Highlighting details (Seams/Contours) -->
+      <path d="M135,150 Q160,160 200,150" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+      <path d="M200,40 Q220,45 250,60" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1" />
+
+      <!-- 4. BUTTON HOUSING (Bezel) -->
+      <path d="M140,90 L135,130 L165,130 L160,90 Z" fill="#111" stroke="#333" stroke-width="1" />
     </svg>
 
-    <!-- Interactive PTT Button -->
-    <!-- Positioned absolutely over the SVG housing -->
+    <!-- INTERACTIVE PTT BUTTON -->
+    <!-- Positioned precisely over the housing area defined above -->
     <button
       @mousedown="startTransmit"
       @mouseup="stopTransmit"
       @mouseleave="stopTransmit"
       @touchstart.prevent="startTransmit"
       @touchend.prevent="stopTransmit"
-      class="absolute top-[22%] left-[28%] w-6 h-8 bg-red-600 rounded-l-full border-r-2 border-red-800 shadow-md transform transition-transform duration-100 focus:outline-none group"
-      :class="{ 'translate-x-1 bg-red-700 shadow-inner': isPressed }"
-      title="Push to Talk (Subscribe)"
+      class="absolute top-[25%] left-[34%] w-6 h-10 bg-gradient-to-b from-red-600 to-red-800 rounded-sm border-2 border-red-900 shadow-[0_2px_4px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.3)] transform transition-all duration-75 focus:outline-none group overflow-hidden"
+      :class="{ 'scale-[0.95] translate-y-[1px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.6)] border-red-950 bg-red-800': isPressed }"
+      title="Push to Talk"
     >
-      <!-- Button detail -->
-      <div class="absolute top-1/2 left-1 w-1 h-4 bg-red-400/30 rounded-full transform -translate-y-1/2"></div>
+      <!-- Tactile ridge/grip on button -->
+      <div class="w-full h-[2px] bg-red-900/40 mb-1 mt-1"></div>
+      <div class="w-full h-[2px] bg-red-900/40 mb-1"></div>
+      <div class="w-full h-[2px] bg-red-900/40"></div>
     </button>
     
     <!-- Label -->
-    <div class="absolute bottom-0 text-gray-500 font-mono text-xs tracking-widest uppercase">
-      PTT to Subscribe
+    <div class="absolute bottom-4 text-gray-500 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
+      PTT
     </div>
   </div>
 </template>
