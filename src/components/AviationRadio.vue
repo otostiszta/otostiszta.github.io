@@ -46,7 +46,7 @@
               <div class="relative w-[180px] flex justify-center md:justify-start">
                 <span class="absolute -top-4 md:-top-3 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-0 text-[9px] text-white font-bold">ACT</span>
                 <div class="flex items-baseline">
-                   <span class="text-4xl font-digital text-white tracking-widest leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">121.975</span>
+                   <span class="text-4xl font-digital text-white tracking-widest leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">118.100</span>
                 </div>
                 <!-- Middle COM Label -->
                 <span class="absolute top-1 -right-4 text-[9px] text-white font-bold hidden md:block">COM</span>
@@ -84,8 +84,8 @@
 
             <!-- Labels Row (Bottom of Display) -->
             <div class="flex justify-between mt-2 px-1 absolute bottom-2 left-0 right-0 md:relative md:bottom-auto md:mt-2">
-              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">EGLL TWR</span>
-              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">EGLL ATIS</span>
+              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">LHBP TWR</span>
+              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">LHBP ATIS</span>
             </div>
             
           </div>
@@ -114,9 +114,14 @@
       <div class="hidden md:flex relative flex-col items-center pt-2 border-l border-navy-800/50">
         <!-- Swap Button -->
         <button class="mb-auto mt-6 text-white hover:text-navy-300 active:scale-95 transition-transform group">
-          <div class="w-9 h-6 bg-[#1a2540] rounded flex items-center justify-center border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] group-active:translate-y-[1px] group-active:border-b-0 group-active:shadow-inner">
-             <svg width="16" height="12" viewBox="0 0 24 16" fill="none">
-               <path d="M4 8h16M4 8l6-6M4 8l6 6M20 8l-6-6M20 8l-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="w-12 h-6 bg-[#1a2540] rounded flex items-center justify-center border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] group-active:translate-y-[1px] group-active:border-b-0 group-active:shadow-inner">
+             <svg width="22" height="12" viewBox="0 0 24 16" fill="white">
+               <!-- Horizontal line -->
+               <path d="M2 8h20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+               <!-- Left arrow (filled triangle pointing left) -->
+               <polygon points="2,8 8,2 8,14" fill="white"/>
+               <!-- Right arrow (filled triangle pointing right) -->
+               <polygon points="22,8 16,2 16,14" fill="white"/>
              </svg>
           </div>
         </button>
