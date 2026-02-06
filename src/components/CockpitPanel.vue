@@ -78,6 +78,11 @@
               Csak induláskor értesítünk. Nincs spam, bármikor leiratkozhatsz.
             </span>
           </p>
+          
+          <!-- Subscription Consent -->
+          <p class="text-navy-500 text-[9px] md:text-[10px] mt-2 text-center font-mono">
+            Feliratkozással elfogadod, hogy e-mailben értesítsünk a szolgáltatás indulásáról.
+          </p>
         </div>
       </div>
     </div>
@@ -168,9 +173,9 @@ const statusMessage = ref('')
 const statusColor = ref('text-navy-400')
 const subscriptionSuccess = ref(false)
 
-// REPLACE THIS WITH YOUR MAILCHIMP FORM ACTION URL
-// It should look like: https://<dc>.api.mailchimp.com/subscribe/post-json?u=<user>&id=<list>
-const MAILCHIMP_URL = 'https://github.us14.list-manage.com/subscribe/post-json?u=YOUR_U_VALUE&id=YOUR_ID_VALUE'
+// Mailchimp form action URL converted to JSONP format
+// Original form: https://letscode.us9.list-manage.com/subscribe/post?u=227ab47fe712fbe0b0287b825&id=442780eeeb&f_id=000c52e1f0
+const MAILCHIMP_URL = 'https://letscode.us9.list-manage.com/subscribe/post-json?u=227ab47fe712fbe0b0287b825&id=442780eeeb'
 
 const validateEmail = (email) => {
   return String(email)
