@@ -61,8 +61,13 @@
       @mouseleave="stopTransmit"
       @touchstart.prevent="startTransmit"
       @touchend.prevent="stopTransmit"
+      :disabled="disabled"
       class="absolute top-[25%] left-[34%] w-6 h-10 bg-gradient-to-b from-red-600 to-red-800 rounded-sm border-2 border-red-900 shadow-[0_2px_4px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.3)] transform transition-all duration-75 focus:outline-none group overflow-hidden"
-      :class="{ 'scale-[0.95] translate-y-[1px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.6)] border-red-950 bg-red-800': isPressed }"
+      :class="{ 
+        'scale-[0.95] translate-y-[1px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.6)] border-red-950 bg-red-800': isPressed,
+        'opacity-50 cursor-not-allowed grayscale': disabled,
+        'ring-2 ring-orange-500/30 animate-pulse': !disabled && !isPressed
+      }"
       title="Push to Talk"
     >
       <!-- Tactile ridge/grip on button -->
@@ -72,8 +77,9 @@
     </button>
     
     <!-- Label -->
-    <div class="absolute bottom-4 text-gray-500 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
-      PTT
+    <div class="absolute bottom-4 text-center font-mono uppercase opacity-70">
+      <span class="text-gray-500 text-xs tracking-[0.2em] block">ADÁS</span>
+      <span class="text-orange-500/80 text-[10px] tracking-wider block mt-0.5">FELIRATKOZÁS</span>
     </div>
   </div>
 </template>
@@ -81,10 +87,18 @@
 <script setup>
 import { ref } from 'vue'
 
+const props = defineProps({
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
+
 const emit = defineEmits(['transmit', 'stop-transmit'])
 const isPressed = ref(false)
 
 const startTransmit = () => {
+  if (props.disabled) return
   if (!isPressed.value) {
     isPressed.value = true
     emit('transmit')

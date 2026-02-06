@@ -55,18 +55,27 @@
               
               <!-- STANDBY FREQ / EMAIL INPUT GROUP -->
               <div class="relative w-[180px] flex justify-center md:justify-end">
-                <span class="absolute -top-4 md:-top-3 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-0 text-[9px] text-white font-bold">STB</span>
+                <span class="absolute -top-4 md:-top-3 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-0 text-[9px] text-white font-bold transition-all duration-500">
+                  {{ subscriptionSuccess ? 'CONFIRMED' : 'STB' }}
+                </span>
                 
                 <!-- Input Field replacing Standby Freq -->
-                <div class="relative w-full text-center md:text-right">
+                <div class="relative w-full text-center md:text-right group">
+                  <div v-if="subscriptionSuccess" class="text-3xl font-digital text-green-400 tracking-widest leading-none p-0 w-full text-center md:text-right h-9 flex items-center justify-center md:justify-end">
+                    ROGER THAT
+                  </div>
                   <input
+                    v-else
                     type="text"
                     :value="modelValue"
                     @input="$emit('update:modelValue', $event.target.value)"
-                    placeholder="EMAIL"
-                    class="bg-transparent border-none text-3xl font-digital text-white tracking-widest leading-none p-0 w-full text-center md:text-right focus:ring-0 placeholder-gray-700 caret-white uppercase h-9"
+                    placeholder="YOUR@EMAIL"
+                    class="bg-transparent border-none text-3xl font-digital text-white tracking-widest leading-none p-0 w-full text-center md:text-right focus:ring-0 placeholder-gray-700 caret-white uppercase h-9 peer"
                     spellcheck="false"
                   />
+                  <!-- Focus Glow (via peer) -->
+                  <div class="absolute -inset-2 rounded-md bg-orange-500/0 peer-focus:bg-orange-500/10 peer-focus:shadow-[0_0_15px_rgba(249,115,22,0.2)] transition-all pointer-events-none -z-10"></div>
+                  
                   <!-- Transmit Indicator -->
                   <div v-if="isTransmitting" class="absolute -top-5 left-1/2 -translate-x-1/2 md:translate-x-0 md:-top-4 md:right-0 text-[9px] bg-white text-black font-bold px-1 animate-pulse z-30">TX</div>
                 </div>
@@ -144,6 +153,10 @@ defineProps({
     default: ''
   },
   isTransmitting: {
+    type: Boolean,
+    default: false
+  },
+  subscriptionSuccess: {
     type: Boolean,
     default: false
   }

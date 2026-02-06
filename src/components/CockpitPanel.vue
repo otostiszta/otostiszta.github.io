@@ -7,11 +7,21 @@
     <div class="z-10 text-center mb-8 md:mb-12">
       <h1 class="text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight">
         GYAKOROLD A RÁDIÓZÁST
-        <span class="block text-orange-500 text-xl md:text-2xl mt-1">- A FÖLDÖN! -</span>
+        <span class="block text-orange-500 text-xl md:text-2xl mt-1">- A FÖLDÖN -</span>
       </h1>
       <p class="text-gray-400 text-sm md:text-base max-w-lg mx-auto">
-        Mert a járó motor túl drága csak rádiózni. Iratkozz fel, és értesítünk, amikor kész!
+        Élethű rádió-szimulációval készülünk, hogy magabiztosan nyomhasd az adást az első egyedüli körödig.
+        <span class="block mt-2 text-white font-semibold">Hamarosan indulunk. Foglald le a helyed.</span>
       </p>
+    </div>
+
+    <!-- Step Guide -->
+    <div class="z-10 flex flex-wrap justify-center gap-x-6 gap-y-1 text-gray-500 font-mono text-xs md:text-sm mb-6 max-w-lg mx-auto">
+      <span><span class="text-orange-500 font-bold">1.</span> Hangold be az e-mailed a rádión</span>
+      <span class="hidden md:inline text-gray-600">→</span>
+      <span><span class="text-orange-500 font-bold">2.</span> Nyomd meg az adóvevő gombot</span>
+      <span class="hidden md:inline text-gray-600">→</span>
+      <span><span class="text-orange-500 font-bold">3.</span> Kész, fogadunk!</span>
     </div>
 
     <!-- Cockpit Layout -->
@@ -20,12 +30,10 @@
       <!-- Control Stick (Left/Center) -->
       <div class="order-2 md:order-1 flex flex-col items-center">
         <ControlStick 
+          :disabled="!isValidEmail || isTransmitting || subscriptionSuccess"
           @transmit="startTransmitting" 
           @stop-transmit="stopTransmitting" 
         />
-        <div class="mt-4 text-center text-gray-500 text-sm md:hidden">
-          Nyomd a gombot a feliratkozáshoz!
-        </div>
       </div>
 
       <!-- Radio Stack (Right) -->
@@ -33,25 +41,43 @@
         <div class="relative">
           <!-- Connection Wire (Visual decoration) -->
           <svg class="absolute top-1/2 -left-16 w-16 h-24 hidden md:block pointer-events-none" style="z-index: -1;">
-            <path d="M0,100 Q40,100 80,50" fill="none" stroke="#374151" stroke-width="4" />
+            <path 
+              d="M0,100 Q40,100 80,50" 
+              fill="none" 
+              :stroke="isValidEmail ? '#f97316' : '#374151'" 
+              :stroke-width="isValidEmail ? 3 : 4" 
+              class="transition-colors duration-500"
+              :class="{ 'animate-pulse': isValidEmail }"
+            />
           </svg>
           
           <AviationRadio 
             v-model="email" 
             :is-transmitting="isTransmitting"
+            :subscription-success="subscriptionSuccess"
           />
           
           <!-- Instructions/Feedback -->
           <div class="mt-4 text-center h-6">
              <transition name="fade">
-              <span v-if="statusMessage" :class="statusColor" class="font-mono font-bold">
+              <span v-if="statusMessage" :class="statusColor" class="font-mono font-bold block">
                 {{ statusMessage }}
               </span>
-              <span v-else class="text-gray-500 text-xs">
-                Írd be az e-mailed, majd nyomd meg a PTT gombot!
+              <span v-else class="text-gray-500 text-xs block">
+                Hangold be az e-mail frekvenciádat a STB mezőbe ↑
               </span>
             </transition>
           </div>
+          
+          <!-- Trust/Reassurance -->
+          <p class="text-gray-600 text-[10px] md:text-xs mt-2 text-center font-mono">
+            <span v-if="subscriptionSuccess" class="text-green-600/70">
+              Visszaigazoló e-mailt küldtünk. Ellenőrizd a spam mappát is!
+            </span>
+            <span v-else>
+              Csak induláskor értesítünk. Nincs spam, bármikor leiratkozhatsz.
+            </span>
+          </p>
         </div>
       </div>
     </div>
@@ -68,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import jsonp from 'jsonp'
 import AviationRadio from './AviationRadio.vue'
 import ControlStick from './ControlStick.vue'
@@ -78,6 +104,7 @@ const email = ref('')
 const isTransmitting = ref(false)
 const statusMessage = ref('')
 const statusColor = ref('text-gray-400')
+const subscriptionSuccess = ref(false)
 
 // REPLACE THIS WITH YOUR MAILCHIMP FORM ACTION URL
 // It should look like: https://<dc>.api.mailchimp.com/subscribe/post-json?u=<user>&id=<list>
@@ -91,26 +118,45 @@ const validateEmail = (email) => {
     )
 }
 
+const isValidEmail = computed(() => {
+  return email.value && validateEmail(email.value)
+})
+
+watch(email, (newVal) => {
+  if (subscriptionSuccess.value) return
+  if (isTransmitting.value) return
+
+  if (isValidEmail.value) {
+    statusMessage.value = 'Frekvencia beállítva. Nyomd az adást!'
+    statusColor.value = 'text-green-400'
+  } else if (newVal.length > 0) {
+    statusMessage.value = '' // Clear until valid or empty
+  } else {
+    statusMessage.value = ''
+  }
+})
+
 const startTransmitting = () => {
   if (isTransmitting.value) return
   
   statusMessage.value = ''
   
   if (!email.value) {
-    statusMessage.value = 'SAY AGAIN? (Add email)'
-    statusColor.value = 'text-yellow-500'
+    // Should be prevented by disabled button, but keep as fallback
+    statusMessage.value = 'Hangold be az e-mail frekvenciádat a STB mezőbe ↑'
+    statusColor.value = 'text-gray-500'
     return
   }
 
   if (!validateEmail(email.value)) {
-    statusMessage.value = 'NEGATIVE (Invalid email)'
+    statusMessage.value = 'NEGATIVE — Ellenőrizd a frekvenciát!'
     statusColor.value = 'text-red-500'
     return
   }
 
   isTransmitting.value = true
-  statusMessage.value = 'TRANSMITTING...'
-  statusColor.value = 'text-orange-500'
+  statusMessage.value = 'ADÁS...'
+  statusColor.value = 'text-orange-500 animate-pulse'
 
   // Construct JSONP URL
   const url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email.value)}`
@@ -122,22 +168,24 @@ const startTransmitting = () => {
       
       if (err) {
         console.error(err)
-        statusMessage.value = 'MAYDAY! (Network Error)'
+        statusMessage.value = 'MAYDAY! Hálózati hiba — próbáld újra.'
         statusColor.value = 'text-red-600'
       } else if (data.result !== 'success') {
         console.error(data.msg)
         // Mailchimp errors can contain HTML
         const msg = data.msg.replace(/<.*?>/g, '') // strip tags
         if (msg.includes('already subscribed')) {
-           statusMessage.value = 'ALREADY COPIED (Subscribed)'
+           statusMessage.value = 'MÁR FOGADTUNK. Ellenőrizd a postaládád!'
            statusColor.value = 'text-blue-400'
+           subscriptionSuccess.value = true
         } else {
            statusMessage.value = 'NEGATIVE! (Error)'
            statusColor.value = 'text-red-600'
         }
       } else {
-        statusMessage.value = 'ROGER! (Subscribed)'
+        statusMessage.value = 'ROGER! Visszaigazolást küldtünk.'
         statusColor.value = 'text-green-500'
+        subscriptionSuccess.value = true
         email.value = '' // Clear input on success
       }
     }, 800)
