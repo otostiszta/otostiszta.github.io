@@ -82,6 +82,68 @@
       </div>
     </div>
 
+    <!-- Social Proof Section -->
+    <div class="z-10 w-full max-w-3xl mx-auto mt-12 mb-8 px-4">
+      <div class="border border-navy-700 bg-navy-800/50 rounded-lg p-6 md:p-8 text-center">
+        <h2 class="text-amber-500 font-mono text-sm md:text-base mb-3 tracking-wider">
+          — VALÓS FORRASOK ALAPJÁN —
+        </h2>
+        <p class="text-navy-400 font-mono text-xs md:text-sm leading-relaxed">
+          A szimuláció valós ATC–pilóta párbeszédek és szabványos ICAO frazeológia alapján készül.
+        </p>
+      </div>
+    </div>
+
+    <!-- Target Audience Section -->
+    <div class="z-10 w-full max-w-5xl mx-auto mb-24 px-4">
+      <h2 class="text-white font-mono text-sm md:text-base mb-6 text-center tracking-wider">
+        KIKNEK KÉSZÜL?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Pilótanövendékek -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 text-center group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <div class="h-10 flex items-center justify-center mb-3 text-amber-500">
+            <!-- Small Plane Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </div>
+          <h3 class="text-white font-mono text-xs font-bold mb-2">PILÓTANÖVENDÉKEK</h3>
+          <p class="text-navy-300 font-mono text-[10px] leading-relaxed">
+            Akik most kezdik a képzést
+          </p>
+        </div>
+
+        <!-- PPL-re készülők -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 text-center group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <div class="h-10 flex items-center justify-center mb-3 text-amber-500">
+            <!-- Checklist/License Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-white font-mono text-xs font-bold mb-2">PPL-RE KÉSZÜLŐK</h3>
+          <p class="text-navy-300 font-mono text-[10px] leading-relaxed">
+            Vizsgára készülők
+          </p>
+        </div>
+
+        <!-- Gyakorló pilóták -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 text-center group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <div class="h-10 flex items-center justify-center mb-3 text-amber-500">
+             <!-- Headset Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+             </svg>
+          </div>
+          <h3 class="text-white font-mono text-xs font-bold mb-2">GYAKORLÓ PILÓTÁK</h3>
+          <p class="text-navy-300 font-mono text-[10px] leading-relaxed">
+            Akik magabiztosabban szeretnének rádiózni élő forgalom előtt
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <div class="absolute bottom-4 text-navy-300 text-xs flex gap-2">
       <span>© {{ new Date().getFullYear() }} Loud and Clear. Minden jog fenntartva.</span>
