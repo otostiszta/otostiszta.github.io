@@ -1,16 +1,16 @@
 <template>
-  <div class="relative w-full max-w-sm md:max-w-[600px] md:w-[600px] h-auto md:h-[170px] mx-auto bg-[#1a1b1e] rounded shadow-2xl border-t border-gray-700 font-sans select-none overflow-hidden">
+  <div class="relative w-full max-w-sm md:max-w-[600px] md:w-[600px] h-auto md:h-[170px] mx-auto bg-[#111827] rounded shadow-2xl border-t border-navy-700 font-sans select-none overflow-hidden">
     
     <!-- Main Faceplate Grid -->
     <div class="grid grid-cols-1 md:grid-cols-[90px_1fr_90px] h-full">
       
       <!-- LEFT SECTION: Volume/Power -->
-      <div class="hidden md:flex relative flex-col items-center pt-2 border-r border-gray-800/50">
+      <div class="hidden md:flex relative flex-col items-center pt-2 border-r border-navy-800/50">
         <!-- COM Label -->
-        <div class="absolute top-1 left-2 text-[10px] font-bold text-gray-400">COM</div>
+        <div class="absolute top-1 left-2 text-[10px] font-bold text-navy-400">COM</div>
         
         <!-- LED Indicator -->
-        <div class="absolute top-2 right-4 w-1.5 h-1.5 rounded-full bg-gray-800 shadow-inner"></div>
+        <div class="absolute top-2 right-4 w-1.5 h-1.5 rounded-full bg-navy-800 shadow-inner"></div>
 
         <!-- Volume Knob Group -->
         <div class="mt-5 flex flex-col items-center">
@@ -18,22 +18,21 @@
              <SingleKnob v-model="volume" :size="40" />
           </div>
           <div class="mt-1 flex flex-col items-center leading-none text-center">
-            <span class="text-[8px] text-gray-400 font-bold block">PWR</span>
-            <span class="text-[8px] text-gray-400 font-bold block">VOL</span>
-            <span class="text-[7px] text-gray-500 mt-0.5 block">PUSH SQ</span>
+            <span class="text-[8px] text-navy-400 font-bold block">PWR</span>
+            <span class="text-[8px] text-navy-400 font-bold block">VOL</span>
+            <span class="text-[7px] text-navy-500 mt-0.5 block">PUSH SQ</span>
           </div>
         </div>
 
         <!-- MON Button -->
-        <button class="absolute bottom-3 w-10 h-6 bg-[#252629] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-white text-[10px] font-semibold active:translate-y-[1px] active:border-b-0 active:shadow-inner">
+        <button class="absolute bottom-3 w-10 h-6 bg-[#1a2540] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-white text-[10px] font-semibold active:translate-y-[1px] active:border-b-0 active:shadow-inner">
           MON
         </button>
       </div>
 
       <!-- CENTER SECTION: Display & Buttons -->
       <div class="flex flex-col px-1 pt-2 w-full h-full justify-center md:justify-start">
-        <!-- Display Bezel -->
-        <div class="bg-[#0a0a0a] rounded-sm border-b border-gray-800 shadow-[inset_0_2px_10px_rgba(0,0,0,1)] relative h-auto py-6 md:py-0 md:h-[95px] overflow-hidden mb-2 mx-1">
+        <div class="bg-[#0a0a0a] rounded-sm border-b border-navy-800 shadow-[inset_0_2px_10px_rgba(0,0,0,1)] relative h-auto py-6 md:py-0 md:h-[95px] overflow-hidden mb-2 mx-1">
           <!-- Glass Reflection -->
           <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none z-20"></div>
           
@@ -74,7 +73,7 @@
                     spellcheck="false"
                   />
                   <!-- Focus Glow (via peer) -->
-                  <div class="absolute -inset-2 rounded-md bg-orange-500/0 peer-focus:bg-orange-500/10 peer-focus:shadow-[0_0_15px_rgba(249,115,22,0.2)] transition-all pointer-events-none -z-10"></div>
+                  <div class="absolute -inset-2 rounded-md bg-amber-500/0 peer-focus:bg-amber-500/10 peer-focus:shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all pointer-events-none -z-10"></div>
                   
                   <!-- Transmit Indicator -->
                   <div v-if="isTransmitting" class="absolute -top-5 left-1/2 -translate-x-1/2 md:translate-x-0 md:-top-4 md:right-0 text-[9px] bg-white text-black font-bold px-1 animate-pulse z-30">TX</div>
@@ -85,8 +84,8 @@
 
             <!-- Labels Row (Bottom of Display) -->
             <div class="flex justify-between mt-2 px-1 absolute bottom-2 left-0 right-0 md:relative md:bottom-auto md:mt-2">
-              <span class="text-[10px] font-digital text-cyan-200/80 tracking-wider">EGLL TWR</span>
-              <span class="text-[10px] font-digital text-cyan-200/80 tracking-wider">EGLL ATIS</span>
+              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">EGLL TWR</span>
+              <span class="text-[10px] font-digital text-sky-300/80 tracking-wider">EGLL ATIS</span>
             </div>
             
           </div>
@@ -101,7 +100,7 @@
           </div>
           
           <!-- Photocell Sensor -->
-          <div class="w-1.5 h-1.5 rounded-full bg-black border border-gray-700 shadow-inner mx-2"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-black border border-navy-700 shadow-inner mx-2"></div>
           
           <div class="flex gap-2">
             <button class="radio-btn">FUNC</button>
@@ -112,10 +111,10 @@
       </div>
 
       <!-- RIGHT SECTION: Tuning & Model -->
-      <div class="hidden md:flex relative flex-col items-center pt-2 border-l border-gray-800/50">
+      <div class="hidden md:flex relative flex-col items-center pt-2 border-l border-navy-800/50">
         <!-- Swap Button -->
-        <button class="mb-auto mt-6 text-white hover:text-gray-300 active:scale-95 transition-transform group">
-          <div class="w-9 h-6 bg-[#252629] rounded flex items-center justify-center border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] group-active:translate-y-[1px] group-active:border-b-0 group-active:shadow-inner">
+        <button class="mb-auto mt-6 text-white hover:text-navy-300 active:scale-95 transition-transform group">
+          <div class="w-9 h-6 bg-[#1a2540] rounded flex items-center justify-center border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] group-active:translate-y-[1px] group-active:border-b-0 group-active:shadow-inner">
              <svg width="16" height="12" viewBox="0 0 24 16" fill="none">
                <path d="M4 8h16M4 8l6-6M4 8l6 6M20 8l-6-6M20 8l-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
              </svg>
@@ -132,8 +131,8 @@
              />
           </div>
           <div class="mt-1 flex flex-col items-end w-full px-1 leading-none text-right">
-            <span class="text-[8px] text-gray-400 font-bold block w-full text-center">TUNE</span>
-            <span class="text-[7px] text-gray-500 mt-0.5 block w-full text-center">PUSH CRSR</span>
+            <span class="text-[8px] text-navy-400 font-bold block w-full text-center">TUNE</span>
+            <span class="text-[7px] text-navy-500 mt-0.5 block w-full text-center">PUSH CRSR</span>
           </div>
         </div>
       </div>
@@ -178,6 +177,6 @@ const tuneInner = ref(0)
 
 
 .radio-btn {
-  @apply w-11 h-6 bg-[#252629] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-gray-300 text-[10px] font-semibold flex items-center justify-center active:translate-y-[1px] active:border-b-0 active:shadow-inner hover:text-white transition-colors;
+  @apply w-11 h-6 bg-[#1a2540] rounded-[2px] border-b-2 border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_4px_rgba(0,0,0,0.5)] text-navy-300 text-[10px] font-semibold flex items-center justify-center active:translate-y-[1px] active:border-b-0 active:shadow-inner hover:text-white transition-colors;
 }
 </style>

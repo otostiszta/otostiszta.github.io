@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="rounded-full bg-[#1a1b1e] border border-black shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_2px_4px_rgba(255,255,255,0.1)] flex items-center justify-center cursor-ns-resize touch-none relative select-none z-10"
+    class="rounded-full bg-[#111827] border border-black shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_2px_4px_rgba(255,255,255,0.1)] flex items-center justify-center cursor-ns-resize touch-none relative select-none z-10"
     :class="{ 'z-20': isDragging }"
     :style="{
       width: size + 'px',

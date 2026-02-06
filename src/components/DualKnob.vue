@@ -3,7 +3,7 @@
     
     <!-- OUTER RING (MHz) -->
     <div 
-      class="absolute inset-0 rounded-full bg-[#1a1b1e] border border-black shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_2px_4px_rgba(255,255,255,0.05)] cursor-ns-resize touch-none z-10"
+      class="absolute inset-0 rounded-full bg-[#111827] border border-black shadow-[0_4px_6px_rgba(0,0,0,0.6),inset_0_2px_4px_rgba(255,255,255,0.05)] cursor-ns-resize touch-none z-10"
       :class="{ 'z-30': isDraggingOuter }"
       :style="{ transform: `rotate(${outerValue}deg)` }"
       @mousedown.stop.prevent="startDragOuter"
@@ -19,7 +19,7 @@
     <!-- INNER KNOB (kHz) -->
     <!-- Sized at roughly 65% of outer ring -->
     <div 
-      class="absolute rounded-full bg-[#151515] border border-black shadow-[0_2px_4px_rgba(0,0,0,0.8),inset_0_1px_3px_rgba(255,255,255,0.1)] cursor-ns-resize touch-none z-20 flex items-center justify-center"
+      class="absolute rounded-full bg-[#0d1525] border border-black shadow-[0_2px_4px_rgba(0,0,0,0.8),inset_0_1px_3px_rgba(255,255,255,0.1)] cursor-ns-resize touch-none z-20 flex items-center justify-center"
       :class="{ 'z-40': isDraggingInner }"
       :style="{ 
         width: (size * 0.65) + 'px', 

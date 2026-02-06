@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-800 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+  <div class="min-h-screen bg-navy-800 flex flex-col items-center justify-center p-4 relative overflow-hidden">
     <!-- Background Texture (Instrument Panel) -->
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none"></div>
     
@@ -7,21 +7,21 @@
     <div class="z-10 text-center mb-8 md:mb-12">
       <h1 class="text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight">
         GYAKOROLD A RÁDIÓZÁST
-        <span class="block text-orange-500 text-xl md:text-2xl mt-1">- A FÖLDÖN -</span>
+        <span class="block text-amber-500 text-xl md:text-2xl mt-1">- A FÖLDÖN -</span>
       </h1>
-      <p class="text-gray-400 text-sm md:text-base max-w-lg mx-auto">
+      <p class="text-navy-400 text-sm md:text-base max-w-lg mx-auto">
         Élethű rádió-szimulációval készülünk, hogy magabiztosan nyomhasd az adást az első egyedüli körödig.
         <span class="block mt-2 text-white font-semibold">Hamarosan indulunk. Foglald le a helyed.</span>
       </p>
     </div>
 
     <!-- Step Guide -->
-    <div class="z-10 flex flex-wrap justify-center gap-x-6 gap-y-1 text-gray-500 font-mono text-xs md:text-sm mb-6 max-w-lg mx-auto">
-      <span><span class="text-orange-500 font-bold">1.</span> Hangold be az e-mailed a rádión</span>
-      <span class="hidden md:inline text-gray-600">→</span>
-      <span><span class="text-orange-500 font-bold">2.</span> Nyomd meg az adóvevő gombot</span>
-      <span class="hidden md:inline text-gray-600">→</span>
-      <span><span class="text-orange-500 font-bold">3.</span> Kész, fogadunk!</span>
+    <div class="z-10 flex flex-wrap justify-center gap-x-6 gap-y-1 text-navy-500 font-mono text-xs md:text-sm mb-6 max-w-lg mx-auto">
+      <span><span class="text-amber-500 font-bold">1.</span> Hangold be az e-mailed a rádión</span>
+      <span class="hidden md:inline text-navy-600">→</span>
+      <span><span class="text-amber-500 font-bold">2.</span> Nyomd meg az adóvevő gombot</span>
+      <span class="hidden md:inline text-navy-600">→</span>
+      <span><span class="text-amber-500 font-bold">3.</span> Kész, fogadunk!</span>
     </div>
 
     <!-- Cockpit Layout -->
@@ -44,7 +44,7 @@
             <path 
               d="M0,100 Q40,100 80,50" 
               fill="none" 
-              :stroke="isValidEmail ? '#f97316' : '#374151'" 
+              :stroke="isValidEmail ? '#f59e0b' : '#1e2d4a'" 
               :stroke-width="isValidEmail ? 3 : 4" 
               class="transition-colors duration-500"
               :class="{ 'animate-pulse': isValidEmail }"
@@ -63,14 +63,14 @@
               <span v-if="statusMessage" :class="statusColor" class="font-mono font-bold block">
                 {{ statusMessage }}
               </span>
-              <span v-else class="text-gray-500 text-xs block">
+              <span v-else class="text-navy-500 text-xs block">
                 Hangold be az e-mail frekvenciádat a STB mezőbe ↑
               </span>
             </transition>
           </div>
           
           <!-- Trust/Reassurance -->
-          <p class="text-gray-600 text-[10px] md:text-xs mt-2 text-center font-mono">
+          <p class="text-navy-600 text-[10px] md:text-xs mt-2 text-center font-mono">
             <span v-if="subscriptionSuccess" class="text-green-600/70">
               Visszaigazoló e-mailt küldtünk. Ellenőrizd a spam mappát is!
             </span>
@@ -83,12 +83,12 @@
     </div>
 
     <!-- Footer -->
-    <div class="absolute bottom-4 text-gray-600 text-xs flex gap-2">
+    <div class="absolute bottom-4 text-navy-600 text-xs flex gap-2">
       <span>© {{ new Date().getFullYear() }} Loud and Clear. Minden jog fenntartva.</span>
       <span>|</span>
-      <button @click="$emit('open-privacy')" class="hover:text-gray-400 underline">Adatvédelmi Tájékoztató</button>
+      <button @click="$emit('open-privacy')" class="hover:text-navy-400 underline">Adatvédelmi Tájékoztató</button>
       <span>|</span>
-      <button @click="$emit('open-cookies')" class="hover:text-gray-400 underline">Cookie beállítások</button>
+      <button @click="$emit('open-cookies')" class="hover:text-navy-400 underline">Cookie beállítások</button>
     </div>
   </div>
 </template>
@@ -103,7 +103,7 @@ const emit = defineEmits(['open-privacy', 'open-cookies'])
 const email = ref('')
 const isTransmitting = ref(false)
 const statusMessage = ref('')
-const statusColor = ref('text-gray-400')
+const statusColor = ref('text-navy-400')
 const subscriptionSuccess = ref(false)
 
 // REPLACE THIS WITH YOUR MAILCHIMP FORM ACTION URL
@@ -144,7 +144,7 @@ const startTransmitting = () => {
   if (!email.value) {
     // Should be prevented by disabled button, but keep as fallback
     statusMessage.value = 'Hangold be az e-mail frekvenciádat a STB mezőbe ↑'
-    statusColor.value = 'text-gray-500'
+    statusColor.value = 'text-navy-500'
     return
   }
 
@@ -156,7 +156,7 @@ const startTransmitting = () => {
 
   isTransmitting.value = true
   statusMessage.value = 'ADÁS...'
-  statusColor.value = 'text-orange-500 animate-pulse'
+  statusColor.value = 'text-amber-500 animate-pulse'
 
   // Construct JSONP URL
   const url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email.value)}`
