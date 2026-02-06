@@ -83,12 +83,12 @@
     </div>
 
     <!-- Footer -->
-    <div class="absolute bottom-4 text-navy-600 text-xs flex gap-2">
+    <div class="absolute bottom-4 text-navy-300 text-xs flex gap-2">
       <span>© {{ new Date().getFullYear() }} Loud and Clear. Minden jog fenntartva.</span>
       <span>|</span>
-      <button @click="$emit('open-privacy')" class="hover:text-navy-400 underline">Adatvédelmi Tájékoztató</button>
+      <button @click="$emit('open-privacy')" class="hover:text-white underline transition-colors">Adatvédelmi Tájékoztató</button>
       <span>|</span>
-      <button @click="$emit('open-cookies')" class="hover:text-navy-400 underline">Cookie beállítások</button>
+      <button @click="$emit('open-cookies')" class="hover:text-white underline transition-colors">Cookie beállítások</button>
     </div>
   </div>
 </template>
