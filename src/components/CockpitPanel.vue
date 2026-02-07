@@ -149,6 +149,50 @@
       </div>
     </div>
 
+    <!-- Audio Samples Section -->
+    <div class="z-10 w-full max-w-5xl mx-auto mb-24 px-4">
+      <h2 class="text-white font-mono text-sm md:text-base mb-6 text-center tracking-wider">
+        ÍZELÍTŐ
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Sample 1 -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <h3 class="text-amber-500 font-mono text-xs font-bold mb-3 text-center">MINTA 1</h3>
+          <audio controls class="w-full">
+            <source src="/sample-1.wav" type="audio/wav">
+            A böngésződ nem támogatja az audio elemet.
+          </audio>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <h3 class="text-amber-500 font-mono text-xs font-bold mb-3 text-center">MINTA 2</h3>
+          <audio controls class="w-full">
+            <source src="/sample-2.wav" type="audio/wav">
+            A böngésződ nem támogatja az audio elemet.
+          </audio>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <h3 class="text-amber-500 font-mono text-xs font-bold mb-3 text-center">MINTA 3</h3>
+          <audio controls class="w-full">
+            <source src="/sample-3.wav" type="audio/wav">
+            A böngésződ nem támogatja az audio elemet.
+          </audio>
+        </div>
+
+        <!-- Sample 4 -->
+        <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
+          <h3 class="text-amber-500 font-mono text-xs font-bold mb-3 text-center">MINTA 4</h3>
+          <audio controls class="w-full">
+            <source src="/sample-4.wav" type="audio/wav">
+            A böngésződ nem támogatja az audio elemet.
+          </audio>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <div class="absolute bottom-4 text-navy-300 text-xs flex gap-2">
       <span>© {{ new Date().getFullYear() }} Loud and Clear. Minden jog fenntartva.</span>
