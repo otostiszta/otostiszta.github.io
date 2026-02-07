@@ -94,7 +94,7 @@
           — VALÓS FORRASOK ALAPJÁN —
         </h2>
         <p class="text-navy-400 font-mono text-xs md:text-sm leading-relaxed">
-          A szimuláció valós ATC–pilóta párbeszédek és szabványos ICAO frazeológia alapján készül.
+          A szimuláció valós repülős rádiózás és szabványos ICAO frazeológia alapján készül.
         </p>
       </div>
     </div>
