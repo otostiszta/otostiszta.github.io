@@ -151,9 +151,12 @@
 
     <!-- Audio Samples Section -->
     <div class="z-10 w-full max-w-5xl mx-auto mb-24 px-4">
-      <h2 class="text-white font-mono text-sm md:text-base mb-6 text-center tracking-wider">
+      <h2 class="text-white font-mono text-sm md:text-base mb-3 text-center tracking-wider">
         ÍZELÍTŐ
       </h2>
+      <p class="text-navy-400 font-mono text-xs md:text-sm mb-6 text-center max-w-2xl mx-auto leading-relaxed">
+        Ezek csak minták — a szimulációban a növendéknek is beszélnie kell.
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Sample 1 -->
         <div class="bg-navy-800/50 border border-navy-700 rounded-lg p-4 group hover:bg-navy-800 hover:border-amber-500/30 transition-all duration-300">
